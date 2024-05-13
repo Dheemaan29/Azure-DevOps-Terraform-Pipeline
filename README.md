@@ -28,6 +28,9 @@ az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_
 # Create blob container
 az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME
 ```
+## Release pipeline
+
+![image](https://github.com/piyushsachdeva/AzureDevOps-Zero-to-Hero/assets/40286378/a492d66d-ed3e-468c-b68e-7d06891a8e92)
 
 ### Deployment stage
 
