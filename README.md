@@ -1,41 +1,85 @@
-# Azure-DevOps-Terraform-Pipeline
+# SQL Query Generator with GPT-4 and Streamlit
 
-![image](https://github.com/Dheemaan29/Azure-DevOps-Terraform-Pipeline/blob/main/assets/https___dev-to-uploads.s3.amazonaws.com_i_tuixe4xcereaxr1egwoa.avif)
+This project showcases the capabilities of combining OpenAI's GPT-4 with Streamlit to generate SQL queries based on natural language input. Users can enter a message describing the data they want to query from an SQLite database, and the application will display the generated SQL query as well as the results from the database.
 
-## How Terraform works
+## Table of Contents
 
-![image](https://github.com/Dheemaan29/Azure-DevOps-Terraform-Pipeline/blob/main/assets/1_AFRu5LYKorZ5dRiPjrOz3g.webp)
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [How It Works](#how-it-works)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Important Pipeline Variables
+## Features
 
-![image](https://github.com/Dheemaan29/Azure-DevOps-Terraform-Pipeline/blob/main/assets/287426087-7a0c53ea-0b7c-4098-b264-c66bb778fddf.png)
+- **Natural Language to SQL**: Uses GPT-4 to transform user's natural language input into an SQL query.
+- **Streamlit Interface**: Provides a simple and intuitive interface for users to input their queries.
+- **SQLite Backend**: Uses SQLite as the database backend to store and query the financial data.
+  
+## Prerequisites
 
-### We can use the below Azure cli commands to set the terraform remote backend, or you can do it via the portal
+- Python 3.6 or above
+- Virtual Environment (recommended)
 
-``` shell
-#!/bin/bash
-## The Storage account name must be unique, and the values below should match your backend.tf
-RESOURCE_GROUP_NAME=demo-resources
-STORAGE_ACCOUNT_NAME=techtutorialswithpiyush
-CONTAINER_NAME=prod-tfstate
+## Installation
 
-# Create resource group
-az group create --name $RESOURCE_GROUP_NAME --location canadacentral
+1. **Clone the Repository**:
+    ```bash
+    git clone https://github.com/NikhilSehgal123/Azure-OpenAI-SQL.git
+    ```
 
-# Create storage account
-az storage account create --resource-group $RESOURCE_GROUP_NAME --name $STORAGE_ACCOUNT_NAME --sku Standard_LRS --encryption-services blob
+2. **Set up a Virtual Environment** (optional but recommended):
+    ```bash
+    python -m venv .venv
+    source .venv/bin/activate  # On Windows, use: .venv\Scripts\activate
+    ```
 
-# Create blob container
-az storage container create --name $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME
-```
-## Release pipeline
+3. **Install the Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-![image](https://github.com/piyushsachdeva/AzureDevOps-Zero-to-Hero/assets/40286378/a492d66d-ed3e-468c-b68e-7d06891a8e92)
+4. **Set up Environment Variables**:
+   
+   If you're using any external services like Azure or APIs, make sure you have the credentials set up as environment variables or stored safely.
 
-### Deployment stage
+## Usage
 
-![image](https://github.com/piyushsachdeva/AzureDevOps-Zero-to-Hero/assets/40286378/66fe7d5d-b665-496a-b43b-e85a88f7271d)
+1. **Run the Streamlit App**:
+    ```bash
+    streamlit run main_app.py
+    ```
 
-### Destroy stage
+2. Open the displayed URL in your browser, usually `http://localhost:8501`.
 
-![image](https://github.com/piyushsachdeva/AzureDevOps-Zero-to-Hero/assets/40286378/5d17e417-8a7d-49a6-8c9d-b120e236fde8)
+3. Type in your natural language query into the input box, like "Show me all expenses greater than 1000".
+
+4. View the generated SQL query and the results from the database.
+
+## How It Works
+
+1. **SQLite Database**:
+
+   The app uses SQLite to create a table representing a company's finances. It holds fields like revenue, expenses, and profit.
+
+2. **Schema Retrieval**:
+
+   Before generating a query, the system retrieves the schema of the table from SQLite to understand its structure.
+
+3. **GPT-4 Model**:
+
+   The main functionality relies on the GPT-4 model to convert a user's natural language input into an SQL query. The app sends a formatted message containing the table's schema to GPT-4, which then returns an appropriate SQL query.
+
+4. **Query Execution**:
+
+   The app then executes the generated SQL query on the SQLite database and retrieves the results.
+
+## Contributing
+
+Feel free to fork this repository, create a feature branch, and submit a pull request if you have improvements or fixes you'd like to share.
+
+## License
+
+This project is open source, under the MIT license.
